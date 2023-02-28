@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './Components/Header';
+import { useState,useEffect  } from 'react';
+import Products from "./Products.json"
+import Product from './Components/Product';
+import Basket from './Components/Basket';
+
 
 function App() {
+const [money, setmoney] = useState(120000); 
+const [basket, setbasket] = useState([]);
+const [total, settotal] = useState(0)
+
+useEffect(() => {
+  settotal (basket.reduce((acc,item)=>{
+    return acc+ (item.amount*(Products.find(product=>product.id===item.id).price))
+  },0))
+
+ 
+}, [basket])
+const resetBasket=()=>{
+  setbasket([])
+}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+    <Header total={total} money={money}  />
+    {Products.map(product =>(
+      <Product key={product.id} total={total} money={money} basket={basket} setbasket={setbasket} product={product} />
+       
+    ))}
+    <Basket setbasket={setbasket} total={total} Products={Products} basket={basket}/>
+   
+  </>
   );
 }
 
