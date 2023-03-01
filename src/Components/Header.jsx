@@ -3,18 +3,19 @@ import { moneyFormat } from '../helpers'
 
 function Header({ money, total }) {
   return (
-    <div>
+    < >
       {total > 0 && money-total !==0 &&(
-        <>Kalan Paranız {moneyFormat(money - total)}$ </>
+        <div className='header'>Kalan Paranız <span>${moneyFormat(money - total)}</span> </div>
       )}
       {total === 0 && (
-        <>Harcamak İçin {moneyFormat(money)}$ paranız var</>
+        <div className='header'>Harcamak İçin <span>${moneyFormat(money)}</span> paranız var</div>
       )}
       {money - total === 0 && (
-        <>Paran Bitti</>
+        <div className='header'>Paran Bitti</div>
       )}
+      
 
-    </div>
+    </>
   )
 }
 

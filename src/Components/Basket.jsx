@@ -11,17 +11,18 @@ function Basket({ basket, Products, total, setbasket }) {
     return (
         <div>
             {total > 0 && (
-                <div>
-                    <div>
+                <div className='basket-container container'>
+                    <h3>Harcama Detayı</h3>
+                    <ul >
                         {basket.map(item => (
 
                             <BasketItem key={item.id} item={item} product={Products.find(p => p.id === item.id)} />
                         ))}
-                    </div>
-                    <div>
+                    </ul>
+                    <div className='total'>
                         Toplam: ${moneyFormat(total)}
                     </div>
-                    <button onClick={resetBasket}>Sepeti Sıfırla</button>
+                    <button className='basket-reset' onClick={resetBasket}>Sepeti Sıfırla</button>
                 </div>
             )}
         </div>
