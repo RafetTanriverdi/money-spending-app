@@ -143,3 +143,15 @@ button[disabled]{
     border-radius: 15px;
     cursor: pointer;
 }
+
+@media (max-width:762px) {
+
+    .product {
+    width: 100%;
+    margin:0 10px;
+    margin-bottom: 10px;
+    }
+    .header {
+        font-size: 14px;
+    }
+}
